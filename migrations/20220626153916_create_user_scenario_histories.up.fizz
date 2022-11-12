@@ -1,0 +1,9 @@
+create_table("user_scenario_histories") {
+  t.Column("id", "uuid", {primary: true, "default_raw": "gen_random_uuid()"})
+  t.Column("user_id", "uuid")
+  t.Column("scenario_id", "uuid")
+  t.Column("total_score", "integer", {"default": 0})
+  t.Column("played_at", "timestamp", {"null": true})
+  t.ForeignKey("user_id", {"users": ["id"]}, {"on_delete": "cascade"})
+  t.ForeignKey("scenario_id", {"scenarios": ["id"]}, {"on_delete": "cascade"})
+}

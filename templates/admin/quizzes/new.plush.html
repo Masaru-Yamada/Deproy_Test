@@ -1,0 +1,71 @@
+<script>
+  function RowAdd() {
+    const table = document.getElementById('targetTable');
+
+    const row = table.insertRow(-1);
+    const cell = row.insertCell(-1);
+
+    cell.innerHTML = '<label class="form-label" for="quiz-QuizOptions[' + table.rows.length  + '].Answer">選択肢' + table.rows.length + '</label>\n' +
+                     '<input class="form-control" id="quiz-QuizOptions[' + table.rows.length + '].Answer" name="QuizOptions[' + table.rows.length + '].Answer" type="text">\n';
+  }
+</script>
+
+<%= partial("navigation.plush.html") %>
+
+<div class="container">
+  <%= form_for(quiz, {action: adminQuizzesPath()}) { %>
+    <h1 class="h3 my-3 fw-normal">クイズ追加</h1>
+    <div class="row">
+      <%= f.InputTag("Question") %>
+      <%= f.InputTag("FailureMessage") %>
+    </div>
+    <h1 class="h3 my-3 fw-normal">選択肢追加</h1>
+  <input type="button" name="RowAdd" value="クイズ選択肢追加" onclick="window.RowAdd()">
+    <table id="targetTable">
+      <tbody>
+        <tr>
+          <td>
+            <%= f.InputTag("QuizOptions[0].Answer", {label: "選択肢1"}) %>
+          </td>
+        </tr>
+      <tbody>
+    </table>
+    <button class="btn btn-success mt-3">登録</button>
+  <% } %>
+
+  <h1 class="h3 my-3 fw-normal">クイズ一覧</h1>
+  <table class="table table-striped">
+    <thead>
+  　　  <tr text-align="left">
+   　　   <th>クイズ</th>
+    　　  <th>選択肢</th>
+  　　  </tr>
+    </thead>
+    <tbody>
+      <%= for (quiz) in quizzes { %>
+        <tr>
+          <td>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><code><%= quiz.ID %></code></li>
+              <li class="list-group-item">Question: <%= quiz.Question %></li>
+              <li class="list-group-item">FailureMessage: <%= quiz.FailureMessage %></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="list-group list-group-flush">
+              <%= for (quizOptions) in quiz.QuizOptions { %>
+                <li class="list-group-item"><code><%= quizOptions.ID %></code></li>
+                <li class="list-group-item">Answer:<%= quizOptions.Answer %></li>
+              <% } %>
+            </ul>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+

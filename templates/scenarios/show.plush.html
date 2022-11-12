@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <h1 class="h2"><%= scenario.Story.Title %></h1>
+  
+  <div class="container mt-3">
+    <div class="mb-3">
+      <div class="row p-3 border">
+        <div class="col-md-8">
+          <div class="row">
+            <h6>
+              <%= for (Tag) in scenario.Story.StoryTaggings { %>
+              <span class="badge bg-info"><%= Tag.Name %></span>
+              <% } %>
+            </h6>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="fs-6 fw-normal">Role: <span class="badge rounded-pill bg-dark"><%= scenario.Role.Name %></span></p>
+            </div>
+            <div class="col-md-6">
+              <p class="fs-6 fw-normal">HighScore: <span class="badge rounded-pill bg-dark"><%= scenario.HighestScore %></span></p>
+            </div>
+          </div>
+          <div class="row">
+            <p class="fs-6 fw-normal">
+              <%= scenario.Overview %>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row">
+            <img src="<%= assetPath("images/stories/" + scenario.Story.ID + ".png") %>" class="img-thumbnail mb-1" alt="<%= scenario.Story.Title %>">
+          </div>
+        </div>
+        <div class="d-grid gap-2 col-md-3 mx-auto">
+          <a class="btn btn-danger btn-lg" href="<%= answerPath({scenario_id: scenario.ID, scenario_quiz_id: scenarioQuizID}) %>">はじめる</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%= if (historyCount > 0) { %>
+  <div class="container mt-3">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>実行日</th>
+          <th>獲得スコア</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= for (h) in history { %>
+        <tr>
+          <td><%= h.PlayedAt %></td>
+          <td><%= h.TotalScore %></td>
+        </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% } %>
+</div><!-- /.container -->

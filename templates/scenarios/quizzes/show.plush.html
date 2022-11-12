@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h1 class="h2"><%= output.Title %></h1>
+  
+  <div class="container mt-3">
+    <div class="mb-3">
+      <div class="row p-3 border">
+        <div class="row">
+          <p class="fs-6 fw-normal">
+            <%= output.Question %>
+          </p>
+        </div>
+        <%= form({action: answerPath({scenario_id: output.ScenarioID, scenario_quiz_id: output.ScenarioQuizID})}) { %>
+        <div class="d-flex justify-content-center container">
+          <div class="form-group">
+            <%= for (i, option) in output.Options { %>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="radio" id="answer-<%= i %>" name="quiz_option" value="<%= option["id"] %>">
+              <label class="form-check-label" for="answer-<%= i %>"><%= option["label"] %></label>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="d-grid gap-2 col-md-3 mx-auto">
+          <button class="btn btn-danger btn-lg">次へ</button>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div><!-- /.container -->

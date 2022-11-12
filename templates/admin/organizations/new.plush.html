@@ -1,0 +1,14 @@
+<%= partial("navigation.plush.html") %>
+
+<div class="container">
+  <h1 class="h3 my-3 fw-normal">組織追加</h1>
+  <%= form_for(organization, {action: adminOrganizationsPath()}) { %>
+  <div class="row">
+    <%= f.SelectTag("CompanyID", {options: companies, value: companyValue}) %>
+    <%= f.InputTag("DisplayID", {value: displayIDValue}) %>
+    <%= f.InputTag("Name") %>
+    <%= f.InputTag("ReportSendEmails") %>
+  </div>
+  <button class="btn btn-success mt-3">登録</button>
+  <% } %>
+</div>

@@ -1,0 +1,11 @@
+<%= partial("navigation.plush.html") %>
+
+<div class="container">
+  <h1 class="h3 my-3 fw-normal">会社追加</h1>
+  <%= form_for(company, {action: adminCompaniesPath()}) { %>
+  <div class="row">
+    <%= f.InputTag("Name") %>
+  </div>
+  <button class="btn btn-success mt-3">登録</button>
+  <% } %>
+</div>

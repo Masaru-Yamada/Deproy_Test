@@ -1,0 +1,6 @@
+create_table("quiz_options") {
+  t.Column("id", "uuid", {primary: true, "default_raw": "gen_random_uuid()"})
+  t.Column("quiz_id", "uuid")
+  t.Column("answer", "string", {"size": 255})
+  t.ForeignKey("quiz_id", {"quizzes": ["id"]}, {"on_delete": "cascade"})
+}

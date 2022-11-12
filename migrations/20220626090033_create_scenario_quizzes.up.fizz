@@ -1,0 +1,10 @@
+create_table("scenario_quizzes") {
+  t.Column("id", "uuid", {primary: true, "default_raw": "gen_random_uuid()"})
+  t.Column("scenario_id", "uuid")
+  t.Column("quiz_id", "uuid", {"null": true})
+  t.Column("first", "bool", {"default": false})
+  t.Column("question", "text", {"null": true})
+  t.Column("failure_message", "text", {"null": true})
+  t.ForeignKey("scenario_id", {"scenarios": ["id"]}, {"on_delete": "cascade"})
+  t.ForeignKey("quiz_id", {"quizzes": ["id"]}, {"on_delete": "cascade"})
+}

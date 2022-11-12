@@ -1,0 +1,40 @@
+@import "../../node_modules/bootstrap/scss/functions";
+
+$body-color: #5A5A5A;
+
+// default variable redefinition settings
+$font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+
+$primary: #D7231D;
+$success: #EE7522;
+$info: #48BBDC;
+$warning: #E8C329;
+$danger: #D7231D;
+
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 2;
+
+@import "../../node_modules/bootstrap/scss/variables";
+
+// default map redefinition settings
+$theme-colors: (
+	"primary": $primary,
+	"secondary": $secondary,
+	"success": $success,
+	"info": $info,
+	"warning": $warning,
+	"danger": $danger,
+	"light": $light,
+	"dark": $dark
+);
+
+body {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";

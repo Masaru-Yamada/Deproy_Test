@@ -1,0 +1,40 @@
+<%= partial("navigation.plush.html") %>
+
+<div class="container">
+  <h1 class="h3 my-3 fw-normal">タグ追加</h1>
+  <%= form_for(tag, {action: adminTagsPath()}) { %>
+    <div class="row">
+      <%= f.InputTag("Name") %>
+    </div>
+    <button class="btn btn-success mt-3">登録</button>
+  <% } %>
+</div>
+
+<div class="container">
+  <h1 class="h3 my-3 fw-normal">タグ一覧</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr text-align="left">
+        <th>名称</th>
+        <th>ID</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for (tag) in tags { %>
+        <tr>
+          <td>
+            <ul class="list-group list-group-flush">
+              <%= tag.Name %>
+            </ul>
+          </td>
+          <td>
+            <ul class="list-group list-group-flush">
+              <code><%= tag.ID %></code>
+            </ul>
+          </td>
+        </tr>
+      <% } %>
+     </tbody>
+  </table>
+</div>

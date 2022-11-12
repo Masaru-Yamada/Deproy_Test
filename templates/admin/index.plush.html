@@ -1,0 +1,44 @@
+<%= partial("navigation.plush.html") %>
+
+<div class="mx-3">
+  
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr text-align="left">
+          <th>会社</th>
+          <th>組織</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= for (o) in output { %>
+        <tr>
+          <td>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><code><%= o.CompanyID %></code></li>
+              <li class="list-group-item">会社名: <%= o.Company.Name %></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><code><%= o.ID %></code></li>
+              <li class="list-group-item">組織ID: <%= o.DisplayID %></li>
+              <li class="list-group-item">組織名: <%= o.Name %></li>
+              <li class="list-group-item"><%= o.ReportSendEmails %></li>
+            </ul>
+          </td>
+          <td><a class="btn btn-outline-info" href="<%= adminUsersPath({organization_id: o.ID}) %>">ユーザ</a></td>
+          <td><a class="btn btn-outline-info" href="<%= adminRolesPath({organization_id: o.ID}) %>">ロール</a></td>
+          <td><a class="btn btn-outline-info" href="<%= adminStoriesPath({organization_id: o.ID}) %>">ストーリー</a></td>
+        </tr>
+        <% } %>
+      
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

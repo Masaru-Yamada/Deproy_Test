@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <h1 class="h2"><%= output.Title %></h1>
+  
+  <div class="container mt-3">
+    <div class="mb-3">
+      <div class="row p-3 border">
+        <div class="col-md-8">
+          <div class="row">
+            <h6>
+              <%= for (_, tag) in output.Tags { %>
+              <span class="badge bg-info"><%= tag.Tag.Name %></span>
+              <% } %>
+            </h6>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="fs-6 fw-normal">Role: <span class="badge rounded-pill bg-dark"><%= output.Role %></span></p>
+            </div>
+            <div class="col-md-6">
+              <p class="fs-6 fw-normal">HighScore: <span class="badge rounded-pill bg-dark"><%= output.HighestScore %></span></p>
+            </div>
+          </div>
+          <div class="row">
+            <p class="fs-6 fw-normal">
+              <%= output.Message %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5">
+    <h2 class="h3">あなたの回答</h2>
+      <div class="container mt-3">
+        <div class="mb-3">
+          <div class="row p-3">
+            <div class="col-md-12">
+              <table class="table fs-6 fw-normal table-borderless table-hover">
+                <thead>
+                <tr>
+                  <th scope="col" class="text-nowrap">#</th>
+                  <th scope="col" class="text-nowrap">問題文</th>
+                  <th scope="col" class="text-nowrap">選択した回答</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%= for (i, ra) in output.ResultAnswers { %>
+                <tr>
+                  <th scope="row"><%= i + 1 %></th>
+                  <td><%= ra.Question %></td>
+                  <td><%= ra.Answer %></td>
+                </tr>
+                <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="container mt-5">
+    <h2 class="h3">獲得した Score</h2>
+      <div class="container mt-3">
+        <div class="mb-3">
+          <div class="row p-3">
+            <div class="col-md-12">
+              <div class="container text-center">
+                <span class="display-1"><strong><%= output.TotalScore %> / <%= output.HighestScore %></strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+      <a href="/scenarios/" class="btn btn-primary btn-lg">シナリオを選ぶ</a>
+      <a href="/mypage/" class="btn btn-secondary btn-lg">マイページに戻る</a>
+    </div>
+  </div>
+  
+</div><!-- /.container -->

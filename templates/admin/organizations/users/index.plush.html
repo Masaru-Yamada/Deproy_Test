@@ -1,0 +1,79 @@
+<%= partial("navigation.plush.html") %>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-3 col-lg-3 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <p class="text-info"><strong><%= organization.Company.Name %><br><%= organization.Name %></strong></p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= adminUsersPath({organization_id: organization.ID}) %>">ユーザ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">シナリオ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">ロール</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="col-md-9 ms-sm-auto col-lg-9 px-md-4">
+      <div class="h4 my-3 fw-normal">ユーザ追加</div>
+      <%= form_for(user, {action: adminUsersPath({organization_id: organization.ID})}) { %>
+      <div class="row">
+        <%= f.InputTag("DisplayID") %>
+      </div>
+      <div class="row">
+        <%= f.InputTag("Nickname") %>
+      </div>
+      <div class="row">
+        <%= f.InputTag("Email") %>
+      </div>
+      <div class="row">
+        <%= f.InputTag("Password", {type: "password"}) %>
+      </div>
+      <div class="row">
+        <%= f.InputTag("PasswordConfirmation", {type: "password"}) %>
+      </div>
+
+      <button class="btn btn-success mt-3">登録</button>
+      <% } %>
+
+      <div class="h4 my-3 fw-normal">ユーザ一覧</div>
+      <table class="table table-striped">
+        <thead>
+        <tr text-align="left">
+          <th>ID</th>
+          <th>Nickname</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= for (user) in users { %>
+        <tr>
+          <td>
+            <ul class="list-group list-group-flush">
+              <code><%= user.ID %></code>
+            </ul>
+          </td>
+          <td>
+            <ul class="list-group list-group-flush">
+              <%= user.Nickname %>
+            </ul>
+          </td>
+          <td>
+            <ul class="list-group list-group-flush">
+              <%= user.Email %>
+            </ul>
+          </td>
+        </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

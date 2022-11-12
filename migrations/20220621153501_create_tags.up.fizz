@@ -1,0 +1,4 @@
+create_table("tags") {
+  t.Column("id", "uuid", {primary: true, "default_raw": "gen_random_uuid()"})
+  t.Column("name", "string", {"size": 128})
+}

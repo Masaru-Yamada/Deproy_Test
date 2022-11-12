@@ -1,0 +1,79 @@
+<style>
+  .form-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+  
+  .form-signin {
+    max-width: 330px;
+    padding: 15px;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="number"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+</style>
+<header>
+  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="<%= rootPath() %>">
+        <img src="<%= rootPath() %>assets/images/play_security_logo_small.png" alt="PlaySecurity" height="36">
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div class="form-wrapper">
+  <div class="form-signin w-100 m-auto">
+      <h1 class="h3 mb-3 fw-normal text-center">ログインする</h1>
+  
+      <%= form_for(user, {action: signinPath()}) { %>
+      <div class="form-floating">
+        <input type="number" class="form-control" name="DisplayID" id="user-DisplayID" placeholder="10005">
+        <label for="user-DisplayID">組織ID</label>
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" name="Email" id="user-Email" placeholder="name@example.com">
+        <label for="user-Email">メールアドレス</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name="Password" id="user-Password" placeholder="Password">
+        <label for="user-Password">パスワード</label>
+      </div>
+    
+      <button class="w-100 btn btn-lg btn-primary">ログイン</button>
+      <% } %>
+  
+    <div class="container">
+      <h5 class="mt-5">パスワードを忘れたときは？</h5>
+        <p><a href="mailto:info-play-security@aiit.ac.jp">info-play-security@aiit.ac.jp</a> までお問い合わせください。</p>
+    </div>
+    <hr>
+    <p class="text-center mt-5 mb-3 text-muted">&copy; 2022 aiit2022-pbl-okuhara</p>
+  </div>
+</div>

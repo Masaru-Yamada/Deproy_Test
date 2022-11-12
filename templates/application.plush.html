@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PlaySecurity</title>
+    <%= stylesheetTag("application.css") %>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="<%= authenticity_token %>" />
+    <link rel="icon" href="<%= assetPath("images/favicon.ico") %>?v=1">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+    
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%= if (current_path != signinPath()) { %>
+    <!-- Header -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="<%= rootPath() %>">
+            <img src="<%= rootPath() %>assets/images/play_security_logo_small.png" alt="PlaySecurity" height="36">
+          </a>
+          <%= if (current_user) { %>
+          <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-building"></i> <%= current_user.DisplayID %></span>
+          <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-circle-user"></i> <%= current_user.Nickname %></span>
+          <% } %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+              <%= if (current_user) { %>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<%= mypagePath() %>">マイページ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= rootPath() %>#usage">利用方法</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= scenariosPath() %>">シナリオを選ぶ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= signoutPath() %>">ログアウト</a>
+              </li>
+              <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<%= rootPath() %>">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= rootPath() %>#service">PlaySecurity とは</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= rootPath() %>#usage">利用方法</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= rootPath() %>#us">わたしたちについて</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= signinPath() %>">ログイン</a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <% } %>
+  
+    <main>
+      <%= partial("flash.html") %>
+      <%= yield %>
+    </main>
+
+    <%= if (current_path != signinPath()) { %>
+    <!-- Footer -->
+    <footer class="container">
+      <hr>
+      <p class="float-end"><a href="#">Back to top</a></p>
+      <p class="text-muted">&copy; 2022 aiit2022-pbl-okuhara</p>
+    </footer>
+    <% } %>
+    
+    <%= javascriptTag("application.js") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c73b4d7cc2.js" crossorigin="anonymous"></script>
+  </body>
+</html>

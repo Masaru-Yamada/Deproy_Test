@@ -1,0 +1,1 @@
+drop_table("scenario_quiz_options")
